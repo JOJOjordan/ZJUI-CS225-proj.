@@ -24,10 +24,28 @@
 
 using namespace std;
 
-int main{
+int report_weekly()
+{
+    // write the report program part here.
+}
+int report_monthly()
+{
+    // write the monthly report here.
+    // you maybe need to add it to the friend function list.
+}
+
+
+int main()
+{
     // main program here.a
     int Duration = 0;
     while (Duration >= 0){
-        
+        // remember to mod 7 and 30 to call the report program.
+        if (! Duration%7){
+            report_weekly();
+        }
+        if (! Duration%30){
+            report_monthly();
+        }
     }
 };
