@@ -177,3 +177,8 @@ template<class T> void hashset<T>::display(void) // only for test purposes
     }
     return;
 }
+
+template<class T>void hashset<T>::remove_modified(T item) {
+    //first initialize the conditions.
+    hash<T>::
+}
