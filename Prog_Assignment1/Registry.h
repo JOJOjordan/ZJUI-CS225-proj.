@@ -7,52 +7,77 @@
 
 #ifndef PROG_ASSIGNMENT1_REGISTRY_H
 #define PROG_ASSIGNMENT1_REGISTRY_H
-
+#include <string>;
+using namespace std;
 enum status {applied,waiting,complete,withdraw};
-enum location{A,B,C,D,E,F,G,H};
+emum result {normal,delayed,emergency};
+enum location {A,B,C,D,E,F,G,H};
 
 class Reg_Node {
     friend class Registry;
 
 public:
     // constructor and a copy constructor.
-    Reg_Node(int ID = 0,char name = "NULL",int age=0,int risk=0,int prof=0,char Birth = 'NULL',char RegData = "Null",int RegDay=0,status stat = applied,int Location,
-    char WeChat = "NULL",char QQ = "NULL",char Email = "NULL",char phone = "NULL");
+    Reg_Node(int ID = 0,string name = "NULL",int age=0,int risk=0,int prof=0,string Birth = 'NULL',string RegData = "Null",int RegDay=0,status stat = applied,int Location,
+    string WeChat = "NULL",string QQ = "NULL",string Email = "NULL",string phone = "NULL");
     Reg_Node(const Reg_Node &obj);
     ~Reg_Node();
+    // setting functions.
     void set_name(int id,char name,Reg_Node*prev,Reg_Node*next);
     void set_profession(int prof,Reg_Node*prev,Reg_Node*next);
     void set_age(int age,Reg_Node*prev,Reg_Node*next);
     void set_risk(int risk,Reg_Node*prev,Reg_Node*next);
-    void set_other_info(char Birth,char RegData,int RegDay,int Location,char Wechat,char QQ,char Email,char phone);
+    void set_other_info(string Birth,string RegData,int RegDay,int Location,string Wechat,string QQ,string Email,string phone);
     void set_status(status stat);
+    void set_treatment(int TreatDAY);
+    void set_priority(int priority);
     // Since it is a multiple linked list, all pointers are set in the
-    // matching set function.
+    // matching get function.
+    int get_id();
+    int get_priority();
+    int get_risk();
+    int get_name();
+    int get_profession();
+    int get_age();
+    int get_location();
+    string* get_local_info();
+    status get_status();
+    int get_treatDay();
+    int get_RegDay();
+    // pointer getter;
+    Reg_Node* AgePrev();
+    Reg_Node* AgeNext();
+    Reg_Node* NamePrev();
+    Reg_Node* NameNext();
+    Reg_Node* ProfPrev();
+    Reg_Node* ProfNext();
+    Reg_Node* RiskPrev();
+    Reg_Node* RiskNext();
+
+
 private:
     int ID;
-    char name;
+    string name;
     int profession;
     int age_group;
     int risk;
     int location;
 
     //not so useful information;
-    char WeChat;
-    char QQ;
-    char E_mail;
-    char phone;
+    string WeChat;
+    string QQ;
+    string E_mail;
+    string phone;
+    string Birthday;
 
     //status information;
     status stat;
     int standard_priority;
 
-    // treat information;
+    // time stamp;
     int TreatDay;
-    char treatData;
-
-    // other info
-    char BirthDay;   // our time info is stored in such a struct : 20010620 for 20,June, 2001;
-    char RegData;
+    //string treatData; // our time info is stored in such a struct : 20010620 for 20,June, 2001;
+    string RegData;
     int Reg_Day; // C++20 have add the new feature in chrono lib,but this is much simple.
 
     // below is the pointers.
@@ -72,15 +97,15 @@ public:
     Registry();
     // ~Registry();
     int getlength();
-    void insert(char name,char birth,char RegData,int age,int risk,int prof,int location,char );
+    void insert(string name,string birth,string RegData,int age,int risk,int prof,int location,
+                string Wechat,string QQ, string Email,string photo);
     void remove(int id);
     void set_Day(int day_num);
     // no concat available Since it is a multiple linked list.
     int search_name(char name); // both will printout the detailed info.
     int search_id(int ID);
-    void get_risk(int ID);
-    void get_prof(int ID);
     void get_waiting(int ID);
+    void withdraw(int id);
     // below are sorting methods.
     void age_sort();
     void prof_sort();
