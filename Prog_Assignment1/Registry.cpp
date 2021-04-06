@@ -22,6 +22,7 @@ Reg_Node::Reg_Node(int ID, string name, int age, int risk, int prof, string Birt
     set_age(age,dummy,dummy);
     set_risk(risk,dummy,dummy);
     set_profession(prof,dummy,dummy);
+    set_queueTime(0);
 }
 
 Reg_Node::Reg_Node(const Reg_Node &obj) {
@@ -87,6 +88,14 @@ void Reg_Node::set_treatment(int TreatDAY)
 {
     this->TreatDay = TreatDAY;
     //this->treatData = TreatData;
+}
+
+void Reg_Node::set_queueTime(int time) {
+    this->queTime = time;
+}
+
+int Reg_Node::queueTime() {
+    return this->queTime;
 }
 
 void Reg_Node::set_priority(int priority) {
@@ -259,6 +268,11 @@ void Registry::insert(string name, string birth, string RegData, int age, int ri
     newnode->set_status(applied);
     newnode->set_other_info(birth,RegData,current_day,location,Wechat,QQ,Email,phone);
 
+    //set queue time! Remember to refine after discussion;
+    if (risk == 0){newnode->set_queueTime(7);}
+    if (risk == 1){newnode->set_queueTime(7);}
+    if (risk == 2){newnode->set_queueTime(37);}
+
     numitems++;
     return;
 }
@@ -330,5 +344,8 @@ vector<int> Registry::get_waiting(int mode) {
 void Registry::withdraw(int id) {
     // use to withdraw someone.
     // here we do not need to
-
+    Reg_Node* sb_is_health;
+    sb_is_health = search_id(id);
+    sb_is_health->set_status(withdraw);
 }
+

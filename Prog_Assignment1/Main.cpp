@@ -39,12 +39,31 @@ int main()
 {
     // main program here.a
     int Duration = 0;
+    // day0: basic information are created.
+    // 1. registry will record first wave of patient.
+    // 2. the queue and the appointment queue is also created, but the reg will not push anythings in it.
+    // 3. the risk 3 may receive treatment in Day 1.
+    // 4. then we will push the day to day1. 
     while (Duration >= 0){
+        // part A : deal with daily things.
+        // 1. push new waiting people int the queue.
+        // 2. then, the queue push several numbers. or check the risk rank 2 and 3.
+        // 3. send treatment appointment to the patient.
+        // Part B : patient management.
+        // 1. this part will raise a menu, where can choose several service : insert new
+        // patient, withdraw patient, check status of a patient, or check the risk 2 or 3
+        // patient.
+        // PartC : End of a Day
+        // 1. In this part, all need to do is to update the day info and some other else. 7
+        // sick suck fuck!2
         // remember to mod 7 and 30 to call the report program.
         if (! Duration%7){
+            cout<<"Generating weekly report......";
+            cout<<"......"<<endl;
             report_weekly();
         }
         if (! Duration%30){
+            cout<<"Generating monthly report ......"<<endl;
             report_monthly();
         }
     }

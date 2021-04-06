@@ -19,10 +19,10 @@ class Reg_Node {
 
 public:
     // constructor and a copy constructor.
-    Reg_Node(int ID = 0,string name = "NULL",int age=0,int risk=0,int prof=0,string Birth = 'NULL',string RegData = "Null",int RegDay=0,status stat = applied,int Location,
+    Reg_Node(int ID = -1,string name = "NULL",int age=-1,int risk=-1,int prof=-1,string Birth = 'NULL',string RegData = "Null",int RegDay=0,status stat = applied,int Location,
     string WeChat = "NULL",string QQ = "NULL",string Email = "NULL",string phone = "NULL");
     Reg_Node(const Reg_Node &obj);
-    ~Reg_Node();
+    //~Reg_Node();
     // setting functions.
     void set_name(int id,string name,Reg_Node*prev,Reg_Node*next);
     void set_profession(int prof,Reg_Node*prev,Reg_Node*next);
