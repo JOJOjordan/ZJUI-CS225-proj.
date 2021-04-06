@@ -8,6 +8,7 @@
 #ifndef PROG_ASSIGNMENT1_REGISTRY_H
 #define PROG_ASSIGNMENT1_REGISTRY_H
 #include <string>;
+#include <vector>;
 using namespace std;
 enum status {applied,waiting,complete,withdraw};
 emum result {normal,delayed,emergency};
@@ -23,7 +24,7 @@ public:
     Reg_Node(const Reg_Node &obj);
     ~Reg_Node();
     // setting functions.
-    void set_name(int id,char name,Reg_Node*prev,Reg_Node*next);
+    void set_name(int id,string name,Reg_Node*prev,Reg_Node*next);
     void set_profession(int prof,Reg_Node*prev,Reg_Node*next);
     void set_age(int age,Reg_Node*prev,Reg_Node*next);
     void set_risk(int risk,Reg_Node*prev,Reg_Node*next);
@@ -31,6 +32,7 @@ public:
     void set_status(status stat);
     void set_treatment(int TreatDAY);
     void set_priority(int priority);
+    void set_queueTime(int time);
     // Since it is a multiple linked list, all pointers are set in the
     // matching get function.
     int get_id();
@@ -44,6 +46,7 @@ public:
     status get_status();
     int get_treatDay();
     int get_RegDay();
+    int queueTime();
     // pointer getter;
     Reg_Node* AgePrev();
     Reg_Node* AgeNext();
@@ -62,6 +65,7 @@ private:
     int age_group;
     int risk;
     int location;
+    int queTime;
 
     //not so useful information;
     string WeChat;
@@ -98,14 +102,20 @@ public:
     // ~Registry();
     int getlength();
     void insert(string name,string birth,string RegData,int age,int risk,int prof,int location,
-                string Wechat,string QQ, string Email,string photo);
+                string Wechat,string QQ, string Email,string phone);
     void remove(int id);
     void set_Day(int day_num);
     // no concat available Since it is a multiple linked list.
-    int search_name(char name); // both will printout the detailed info.
-    int search_id(int ID);
-    void get_waiting(int ID);
+    int search_name(string name); // both will printout the detailed info.
+    // the follow is used for sort and return pointers.
+    Reg_Node* search_id(int id);
+    vector<int> get_waiting(int mode = 0); // return the id who are still not push to the queue.
+    // to make it easier to return in specific order, the parametric is use to switch
+    // searching mode. 0 for name list, 1 for age list,
     void withdraw(int id);
+    // using to push one people to the queue.
+    // only do that on next day.
+    vector<Reg_Node*> push2Queue();
     // below are sorting methods.
     void age_sort();
     void prof_sort();
@@ -114,6 +124,8 @@ public:
 private:
     int prev_ID; // use to assign new unique id;
     int numitems;
+    int current_day;
+    // dummy nodes
     Reg_Node *name_dummy;
     Reg_Node *age_dummy;
     Reg_Node *risk_dummy;
