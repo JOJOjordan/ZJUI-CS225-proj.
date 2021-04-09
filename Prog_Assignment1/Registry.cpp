@@ -2,155 +2,9 @@
 // Created by jordan on 2021/4/3.
 //
 
-#include <stdio.h>
-#include <cstdlib>
-#include <iostream>
-#include <string>
-#include <vector>
 #include "Registry.h"
 
 using namespace std;
-
-Reg_Node::Reg_Node(int ID, string name, int age, int risk, int prof, string Birth, string RegData, int RegDay, status stat,
-                   int Location, string WeChat, string QQ, string Email, string phone) {
-    // i would set the pointer in the registry. by the way, the node can also
-    //set the pointer by this function.
-    Reg_Node* dummy = nullptr;
-    set_other_info(Birth,RegData,RegDay,Location,WeChat,QQ,Email,phone);
-    set_status(applied);
-    set_name(ID,name,dummy,dummy);
-    set_age(age,dummy,dummy);
-    set_risk(risk,dummy,dummy);
-    set_profession(prof,dummy,dummy);
-    set_queueTime(0);
-}
-
-Reg_Node::Reg_Node(const Reg_Node &obj) {
-    // Copy constructor here.
-    // i wonder should i copy all the things to the new memory size. since when something is changed, all the things
-    // should be done. or, in another version, we can make the information isolated. in my node, we can only handle several things.
-    // but now we have made this node.
-    // i can write the class reg to avoid such information being read.
-
-}
-
-void Reg_Node::set_age(int age, Reg_Node *prev, Reg_Node *next)
-{
-    // the age group division will be finished in the registry.
-    // also the pointers.
-    this->age_group = age;
-    this->age_next = next;
-    this->age_prev = prev;
-}
-
-void Reg_Node::set_name(int id, string name, Reg_Node *prev, Reg_Node *next)
-{
-    // the name and the next items will be add in the same way.
-    this->name = name;
-    this->ID = id;
-    this->name_next = next;
-    this->name_prev = prev;
-}
-
-void Reg_Node::set_profession(int prof, Reg_Node *prev, Reg_Node *next)
-{
-    this->profession = prof;
-    this->prof_next = next;
-    this->prof_prev = prev;
-}
-
-void Reg_Node::set_risk(int risk, Reg_Node *prev, Reg_Node *next) {
-    this->risk = risk;
-    this->risk_next = next;
-    this->risk_prev = prev;
-}
-
-void Reg_Node::set_status(status stat) {
-    this->set_status=stat;
-}
-
-void Reg_Node::set_other_info(string Birth, string RegData, int RegDay, int Location, string Wechat, string QQ, string Email,
-                              string phone) {
-    this->WeChat = Wechat;
-    this->phone = phone;
-    this->QQ = QQ;
-    this->E_mail = Email;
-    this->location = Location;
-    this->BirthDay = Birth;
-    this->RegData = RegData;
-    this->Reg_Day = RegDay;
-    this->TreatDay = 0;
-    this->treatData = "NULL";
-    this->standard_priority = 0;
-}
-
-void Reg_Node::set_treatment(int TreatDAY)
-{
-    this->TreatDay = TreatDAY;
-    //this->treatData = TreatData;
-}
-
-void Reg_Node::set_queueTime(int time) {
-    this->queTime = time;
-}
-
-int Reg_Node::queueTime() {
-    return this->queTime;
-}
-
-void Reg_Node::set_priority(int priority) {
-    this->standard_priority = priority;
-}
-
-int Reg_Node::get_age() {
-    return this->age_group;
-}
-
-string Reg_Node::get_name() {
-    return this->name;
-}
-
-int Reg_Node::get_risk() {
-    return this->risk;
-}
-
-int Reg_Node::get_location() {
-    return this->location;
-}
-
-int Reg_Node::get_id() {
-    return this->ID;
-}
-
-int Reg_Node::get_priority() {return this->standard_priority;}
-
-int Reg_Node::get_RegDay() {return this->Reg_Day;}
-
-status Reg_Node::get_status() {return this->stat;}
-
-int Reg_Node::get_profession() {return this->profession;}
-
-string * Reg_Node::get_local_info() {
-    string * answer[6];
-    answer[0] = this->phone;
-    answer[1] = this->QQ;
-    answer[2] = this->WeChat;
-    answer[3] = this->E_mail;
-    answer[4] = this->Birthday;
-    answer[5] = this->RegData;
-    return answer;
-}
-
-int Reg_Node::get_treatDay() { return this->TreatDay;}
-
-Reg_Node * Reg_Node::AgeNext() {return this->age_next;}
-Reg_Node * Reg_Node::AgePrev() {return this->age_prev;}
-Reg_Node * Reg_Node::NameNext() {return this->name_next;}
-Reg_Node * Reg_Node::NamePrev() {return this->name_prev;}
-Reg_Node * Reg_Node::ProfNext() {return this->prof_next;}
-Reg_Node * Reg_Node::ProfPrev() {return this->prof_prev;}
-Reg_Node * Reg_Node::RiskNext() {return this->risk_next;}
-Reg_Node * Reg_Node::RiskPrev() {return this->risk_prev;}
 
 
 Registry::Registry()
@@ -167,6 +21,7 @@ Registry::Registry()
     this->risk_dummy->set_risk(-1,risk_dummy,risk_dummy);
     this->prof_dummy->set_profession(-1,prof_dummy,prof_dummy);
     this->name_dummy->set_name(-1,"NULL",name_dummy,name_dummy);
+
     numitems = 0;
     prev_ID = 0;
 }
@@ -231,7 +86,7 @@ void Registry::remove(int id) {
     return;
 }
 
-void Registry::insert(string name, string birth, string RegData, int age, int risk, int prof, int location,
+Reg_Node* Registry::insert(string name, string birth, string RegData, int age, int risk, int prof, int location,
                       string Wechat, string QQ, string Email, string phone) {
     // now we should insert the read node into the reg chain.
 
@@ -240,28 +95,42 @@ void Registry::insert(string name, string birth, string RegData, int age, int ri
 
     Reg_Node *name_last;
     name_last = name_dummy->NamePrev();
-    newnode->set_name(prev_ID, name, name_last, name_dummy);
+    newnode->set_name(prev_ID, name, name_dummy, name_dummy);
+    newnode->set_nameNext(name_dummy);
+    newnode->set_namePrev(name_last);
+    name_dummy->set_namePrev(newnode);
+    (name_last)->set_nameNext(newnode);
+    cout<<newnode->NamePrev()->ID<<" is the last ID"<<endl;
 
     // the age info here is the origin number. we have to divide them to age group.
     int age_group = 0;
-    if (0<age <=12){age_group = 1;}
-    if (12<age<=18){age_group = 2;}
-    if (18<age<=35){age_group = 3;}
-    if (35<age<=50){age_group = 4;}
-    if (50<age<=65){age_group = 5;}
-    if (65<age<=75){age_group = 6;}
+    if (0<age &&age<=12){age_group = 1;}
+    if (12<age && age<=18){age_group = 2;}
+    if (18<age && age<=35){age_group = 3;}
+    if (35<age && age<=50){age_group = 4;}
+    if (50<age &&age<=65){age_group = 5;}
+    if (65<age&& age<=75){age_group = 6;}
     if (age>75){age_group = 7;}
+
     Reg_Node *age_l;
     age_l = age_dummy->AgePrev();
-    newnode->set_age(age_group, age_l, age_dummy);
+    newnode->set_age(age_group, age_dummy, age_dummy);
+    newnode->set_agePrev(age_l);
+    age_dummy->set_agePrev(newnode);
+    age_l->set_ageNext(newnode);
+
 
     Reg_Node *prof_l;
     prof_l = prof_dummy->ProfPrev();
     newnode->set_profession(prof, prof_l, prof_dummy);
+    prof_dummy->set_profPrev(newnode);
+    prof_l->set_profNext(newnode);
 
     Reg_Node *risk_l;
     risk_l = risk_dummy->RiskPrev();
     newnode->set_risk(risk,risk_l,risk_dummy);
+    risk_dummy->set_riskPrev(newnode);
+    risk_l->set_riskNext(newnode);
 
     // now the basic information.
     newnode->set_priority(-1);
@@ -274,7 +143,10 @@ void Registry::insert(string name, string birth, string RegData, int age, int ri
     if (risk == 2){newnode->set_queueTime(37);}
 
     numitems++;
-    return;
+
+    cout<<"Welcome! Mr/Miss/Mrs "<<name;
+    cout<<"!"<<" Your ID is "<<prev_ID<<endl;
+    return newnode;
 }
 
 void Registry::set_Day(int day_num) { current_day = day_num;}
@@ -339,13 +211,82 @@ vector<int> Registry::get_waiting(int mode) {
             }
             break;
     }
+    return output;
 }
 
-void Registry::withdraw(int id) {
+vector<int> Registry::get_withdraw(int mode) {
+    vector<int> output;
+    Reg_Node* dummy;
+    Reg_Node* current;
+    switch (mode) {
+        case 0:
+            dummy = name_dummy;
+            current = dummy->NameNext();
+            for (int i=0;i<numitems;i++){
+                if (current->get_status() == withdraw){
+                    output.push_back(current->get_id());
+                }
+                current = current->NameNext();
+            }
+            break;
+        case 1:
+            dummy = age_dummy;
+            current = dummy->AgeNext();
+            for (int i=0;i<numitems;i++){
+                if (current->get_status() == withdraw){
+                    output.push_back(current->get_id());
+                }
+                current = current->AgeNext();
+            }
+            break;
+        case 2:
+            dummy = prof_dummy;
+            current = dummy->ProfNext();
+            for (int i=0;i<numitems;i++){
+                if (current->get_status() == withdraw){
+                    output.push_back(current->get_id());
+                }
+                current = current->ProfNext();
+            }
+            break;
+        case 3:
+            dummy = risk_dummy;
+            current = dummy->RiskNext();
+            for (int i=0;i<numitems;i++){
+                if (current->get_status() == withdraw){
+                    output.push_back(current->get_id());
+                }
+                current = current->RiskNext();
+            }
+            break;
+    }
+    return output;
+}
+
+int Registry::priority_letter(Reg_Node* VIP, int ddl) {
+    VIP->set_ddl(ddl);
+    VIP->set_status(waiting);
+    return 1;
+}
+
+void Registry::withdrawn(int id) {
     // use to withdraw someone.
     // here we do not need to
     Reg_Node* sb_is_health;
     sb_is_health = search_id(id);
     sb_is_health->set_status(withdraw);
+}
+
+int Registry::search_name(string name) {
+    Reg_Node* head;
+    int retnum = -1;
+    head = name_dummy->NameNext();
+    for (int i = 0; i < numitems;i++) {
+        if (head->name == name) {
+            retnum = head->get_id();
+        }
+        head = head->NameNext();
+    }
+    return retnum;
 }
 
