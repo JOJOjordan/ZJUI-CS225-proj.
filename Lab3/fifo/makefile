@@ -1,4 +1,15 @@
-queuemgt: queuemgt.cpp fifo.o fifo.h
-	g++ queuemgt.cpp fifo.o -o queuemgt
-fifo.o: fifo.cpp fifo.h
-	g++ -c fifo.cpp -o fifo.o
+CC = g++
+program = out
+header = $(shell find ./ -name "*.h")
+src = $(shell find ./ -name "*.cpp")
+obj = $(src:%.cpp = %.o)
+
+
+$(program): $(obj)
+	$(CC) -o $(program) $(obj)
+
+%.o: %.cpp $(header)
+	$(CC) -c $< -o $@
+
+clean:
+	rm -rf $(obj) $(program)

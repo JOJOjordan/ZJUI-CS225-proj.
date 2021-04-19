@@ -17,7 +17,7 @@ class Reg_Node;
 
 class Registry {
 public:
-    Registry();
+    Registry(int num=1,int stationID=1);
     // ~Registry();
     int getlength();
     Reg_Node* insert(string name,string birth,string RegData,int age,int risk,int prof,int location,string Wechat,string QQ, string Email,string phone);
@@ -50,6 +50,7 @@ public:
 
 private:
     int prev_ID; // use to assign new unique id;
+    int focalnum;
     int numitems;
     int current_day;
     // dummy nodes

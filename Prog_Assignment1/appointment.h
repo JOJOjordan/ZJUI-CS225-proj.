@@ -6,6 +6,7 @@
 #include <vector>
 #include <queue>
 #include "Reg_Node.h"
+#include "status.h"
 
 
 using namespace std;
@@ -37,6 +38,7 @@ public:
     int Avtime(void);
     vector<Reg_Node*> displaytreated(void);
     vector<Reg_Node*> displaywaiting(void);
+    int treated(Reg_Node* patient);
     //void sort(Reg_Node);//uncompleted.
     //void display(Reg_Node);//print the all data in local database.
     /* queue库里的：

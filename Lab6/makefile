@@ -1,4 +1,15 @@
-bstmgt: bstmgt.cpp bst.o bst.h
-	g++ bstmgt.cpp bst.o -o bstmgt
-bst.o: bst.cpp bst.h
-	g++ -c bst.cpp -o bst.o
+CC = g++
+program = out
+header = $(shell find ./ -name "*.h")
+src = $(shell find ./ -name "*.cpp")
+obj = $(src:%.cpp = %.o)
+
+
+$(program): $(obj)
+	$(CC) -o $(program) $(obj)
+
+%.o: %.cpp $(header)
+	$(CC) -c $< -o $@
+
+clean:
+	rm -rf $(obj) $(program)
