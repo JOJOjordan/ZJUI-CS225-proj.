@@ -1,0 +1,3 @@
+/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/cmake-build-debug/CMakeFiles/Trial_PA2.dir

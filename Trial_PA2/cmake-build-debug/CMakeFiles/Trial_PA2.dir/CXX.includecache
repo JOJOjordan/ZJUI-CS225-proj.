@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/Tuple.cpp
+Tuple.h
+/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/Tuple.h
+
+/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/Tuple.h
+stdio.h
+-
+cstdlib
+-
+iostream
+-
+string
+-
+vector
+-
+status.h
+/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/status.h
+
+/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/main.cpp
+iostream
+-
+
+/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/status.h
+

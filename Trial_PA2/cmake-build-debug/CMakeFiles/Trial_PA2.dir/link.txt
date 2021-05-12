@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/Trial_PA2.dir/main.cpp.o CMakeFiles/Trial_PA2.dir/Tuple.cpp.o -o Trial_PA2 
