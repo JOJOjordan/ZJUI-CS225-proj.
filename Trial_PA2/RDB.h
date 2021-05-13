@@ -15,7 +15,7 @@ class block{
     // possible solution:
     // 1. a pointer.
     // 2. only the main block can store the true tuple. other block should store the
-    // pointers.
+    //    pointers.
     // 3. all the block chain can store the tuple.
     // this version I would like to try the second one.
     friend class RDB;
@@ -24,10 +24,10 @@ public:
     block(int size = 50);
     // ~block();
     // we should use array: it is a block of memory finally.
-    int insert(const Tuple &obj); // 1 for success. 0 for full.
-    int Full(); // same as above, 0 full.
-    Tuple* find(int id);
-    int remove(int id);
+    Tuple* insert(const Tuple &obj); // 1 for success. 0 for full.
+    int Full(); // same as above, 0 for full.
+    Tuple* find(int id); // nullptr for not found.
+    int remove(int id); // 1 for removed, 0 for not found.
     // simple get function, if necessary
     Tuple get_tuple(int location);
     Tuple* get_array();
@@ -65,10 +65,14 @@ public:
 
 protected:
     // there we are discussing about database implement.
-    void P_sort();
-    void OtherSort(int mode);// 1 for Medic, 2 for Treatment,3 for Registry.
+    // 1 for Medic, 2 for Treatment,3 for Registry.
+    void MedicSort();
+    void TreatSort();
+    void RegSort();
+
     int DBsplit(int blocknum);
-    int DBmerge(int block1,int block2);
+    int DBmerge(int block1,int block2);//return 0 for merge 2 block to one. return k shows that the
+    /*the two new block was split at k. */
     // think: how to merge them???
 
 
@@ -83,6 +87,9 @@ private:
     // the block should build together.
     int block_size;
     int num_block;
+
+    // useful function in sorting.
+    void swap_sort(vector<Tuple*>* obj);
 };
 
 
