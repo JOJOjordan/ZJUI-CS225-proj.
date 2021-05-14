@@ -8,6 +8,6 @@
 {applied,
  waiting,
  complete,
- withdraw};
+ withdrawn};
 
 #endif //PROG_ASSIGNMENT1_STATUS_H

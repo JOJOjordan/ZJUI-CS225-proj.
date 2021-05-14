@@ -53,9 +53,10 @@ class RDB {
 public:
     RDB(int block_size = 50);
     //~RDB();
-    void insert(const Tuple &obj);
+    Tuple* insert(const Tuple &obj);
     void Delete(int id);
     Tuple* find_ID(int id);
+    int getlength();
     // the secondary key is sorted by primary key when they have same value.
     // the pointer are supporting direct find.
     vector<Tuple*>* find_Medic(int medic);

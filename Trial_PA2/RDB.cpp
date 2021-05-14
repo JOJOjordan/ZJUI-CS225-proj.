@@ -28,10 +28,11 @@ Tuple* block::insert(const Tuple &obj) {
         // the overflow is full....
         sort();
     }
-    Tuple newtuple = Tuple(obj);
-    overflow[this->num_over] = newtuple;
+
+    auto newtuple = new Tuple(obj);
+    overflow[this->num_over] = *newtuple;
     num_over++;
-    return &newtuple;
+    return newtuple;
 }
 
 void block::sort() {
@@ -105,7 +106,6 @@ void block::sort() {
     this->main = temparray;
     this->num_over = 0;
     this->num_main = counter;
-    return;
 }
 
 int block::Full() {
@@ -126,7 +126,7 @@ Tuple * block::find(int id) {
         int middle = (low+high)/2;
         Tuple m = main[middle];
         if (m.get_id()==id){
-            return &m;
+            return &main[middle];
         }
         else if (id>m.get_id()){
             low = middle+1;
@@ -140,7 +140,7 @@ Tuple * block::find(int id) {
     for (int i = 0;i<num_over;i++){
         Tuple m = overflow[i];
         if (m.get_id()==id) {
-            return &m;
+            return &overflow[i];
         }
     }
     // finally not found.
@@ -156,8 +156,8 @@ int block::remove(int id) {
     }
 }
 int block::inTrash(int id) {
-    for (int i=0;i<Trash->size();i++){
-        if((*Trash)[i] == id){
+    for (auto i:*Trash){
+        if(i == id){
             return 1;
         }
     }
@@ -180,17 +180,20 @@ RDB::RDB(int block_size) {
     division->push_back(0);
 }
 
+int RDB::getlength() {
+    return (int)this->Medic->size();
+}
 // for the insert part.
 
-void RDB::insert(const Tuple &obj) {
+Tuple* RDB::insert(const Tuple &obj) {
     //insert by linear search.....
     int info = obj.get_id();
     int location = 0;
     Tuple* direct = nullptr;
-    while(this->division[location]<info&&location<num_block-1){
+    while((*this->division)[location]<info&&location<num_block-1){
         location++;
     }
-    block* target = primary[location];
+    block* target = (*primary)[location];
     //now check if the block is full.
     direct = target->insert(obj);
     if (!direct){
@@ -200,25 +203,26 @@ void RDB::insert(const Tuple &obj) {
             direct = target->insert(obj);
         } else{
             location++;
-            target = primary[location];
+            target = (*primary)[location];
             direct = target->insert(obj);
         }
     }
     //now update the division.
-    if (!division[location]||division[location]>info){
-        division[location] = info;
+    if (!(*division)[location]||(*division)[location]>info){
+        (*division)[location] = info;
     }
     // now update the secondary key.
     this->Medic->push_back(direct);
     this->Treatment->push_back(direct);
     this->Registration->push_back(direct);
+    return direct;
 }
 
 // for the split part.
 int RDB::DBsplit(int blocknum) {
     // first copy out the last part.....
     int half = block_size/2;
-    block* current = primary[blocknum];
+    block* current = (*primary)[blocknum];
     auto newblock = new block(this->block_size);
     Tuple h = current->main[half];
     int split = h.get_id();
@@ -236,19 +240,19 @@ int RDB::DBsplit(int blocknum) {
 //Delete operation.
 void RDB::Delete(int id) {
     int location = 0;
-    while(this->division[location]<id&&location<num_block-1){
+    while((*this->division)[location]<id&&location<num_block-1){
         location++;
     }
     // call the delete.
-    block* target = primary[location];
+    block* target = (*primary)[location];
     if (target->remove(id)){
         //check if the label tuple was deleted.
-        if (id == division[location]){
+        if (id == (*division)[location]){
             int trial = id + 1;
             while (!target->find(trial)){
                 trial++;
             }
-            division[location] = trial;
+            (*division)[location] = trial;
         }
         // now delete it from the secondary block.
         // a little hard to finish.
@@ -288,7 +292,6 @@ void RDB::Delete(int id) {
             }
         }
     }
-    return;
 }
 
 // merge operation.
@@ -297,8 +300,8 @@ int RDB::DBmerge(int block1, int block2) {
     // i think it should activated from the delete operation.
     // so just make it run!
     int divide = 0;
-    block* b1 = primary[block1];
-    block* b2 = primary[block2];
+    block* b1 = (*primary)[block1];
+    block* b2 = (*primary)[block2];
     b1->sort();
     b2->sort();
     int total = b1->num_over + b2->num_over + b1->num_main + b2->num_main;
@@ -337,7 +340,7 @@ int RDB::DBmerge(int block1, int block2) {
                 //2. the division block.
                 Tuple first = newarray[0];
                 divide = first.get_id();
-                division[block2] = first.get_id();
+            (*division)[block2] = first.get_id();
         } else{
             // now the b1 have more elements than b2.
             int num_move = total/2 - b2->num_main;
@@ -359,7 +362,7 @@ int RDB::DBmerge(int block1, int block2) {
             //2. the division block.
             Tuple first = newarray[0];
             divide = first.get_id();
-            division[block2] = first.get_id();
+            (*division)[block2] = first.get_id();
         }
     }
     return divide;
@@ -378,7 +381,6 @@ void RDB::swap_sort(vector<Tuple *>* obj) {
             }
         }
     }
-    return;
 }
 
 void RDB::MedicSort() {
@@ -387,8 +389,7 @@ void RDB::MedicSort() {
             auto target = this->Medic;
             // there's 4 medical status, so i will create 4 bucket.
             vector<Tuple*> A,B,C,D;
-            for (int i=0;i<target->size();i++){
-                auto temp = (*target)[i];
+            for (auto temp:*target){
                 if (temp->get_medic() == 0){
                     A.push_back(temp);
                 }
@@ -427,14 +428,14 @@ void RDB::MedicSort() {
 //retrieval part!!!
 //1. primary key.
 Tuple * RDB::find_ID(int id) {
-    if (id < this->division[0]){
+    if (id < *this->division[0]){
         return nullptr;
     }
     int location = 0;
-    while(this->division[location]<id&&location<num_block-1){
+    while(*this->division[location]<id&&location<num_block-1){
         location++;
     }
-    block* target = primary[location];
+    block* target = (*primary)[location];
     return target->find(id);
 }
 
@@ -444,8 +445,7 @@ Tuple * RDB::find_ID(int id) {
 vector<Tuple *> * RDB::find_Medic(int medic) {
     auto result = new vector<Tuple*>;
     this->MedicSort();
-    for (int i=0;i<Medic->size();i++){
-        auto temp = (*Medic)[i];
+    for (auto temp : *Medic){
         if (medic == temp->get_medic()){
             result->push_back(temp);
         }
@@ -456,8 +456,7 @@ vector<Tuple *> * RDB::find_Medic(int medic) {
 vector<Tuple *> * RDB::find_Reg(int location) {
     auto result = new vector<Tuple*>;
     this->RegSort();
-    for (int i=0;i<Registration->size();i++){
-        auto temp = (*Registration)[i];
+    for (auto temp:*Registration){
         if (location == temp->get_registration()){
             result->push_back(temp);
         }
@@ -469,8 +468,7 @@ vector<Tuple *> * RDB::find_Treatment(int t_type) {
 
     auto result = new vector<Tuple*>;
     this->TreatSort();
-    for (int i=0;i<Treatment->size();i++){
-        auto temp = (*Treatment)[i];
+    for (auto temp : *Treatment){
         if (t_type == temp->get_Treatment()){
             result->push_back(temp);
         }
