@@ -19,6 +19,7 @@ public:
     vector<Tuple*>* find_sth(int mode, int information);
     Tuple* find_name(string patient_name);
     void withdraw(int id);
+    void priority(int id,int ddl);
     // method to cancel the withdraw.
     void resent_application(int id);
     void updateDAY(int day);

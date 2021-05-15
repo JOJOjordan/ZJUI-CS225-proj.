@@ -78,7 +78,7 @@ protected:
 
 
 private:
-    // the sort algorithm is  defined here.
+    // the sort algorithm is defined here.
     vector<Tuple*>* Medic;
     vector<Tuple*>* Treatment;
     vector<Tuple*>* Registration;
