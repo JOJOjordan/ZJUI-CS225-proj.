@@ -10,6 +10,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <queue>
+
 #include "status.h"
 using namespace std;
 
@@ -30,10 +32,12 @@ public:
     int get_Treatment() const;
     int get_TreatDay() const;
     int get_startDay() const;
+    int get_priority() const;
     //basic set function
     void set_status(status newstat);
     void set_startDay(int day);
     void set_TreatDay(int day);
+    void set_priority(int priority);
 
 private:
     int id;
@@ -42,6 +46,7 @@ private:
     int Reg;
     int start_day;
     int Treat_day;
+    int priority;
 
     string name;
     status stat;

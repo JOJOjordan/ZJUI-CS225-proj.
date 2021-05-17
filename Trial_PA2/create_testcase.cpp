@@ -29,7 +29,6 @@ int create_testcase(int month,int date)
     }while (0 > check || check > 100);
 
     stringstream date_ss;
-
     string month_str;
     if (month < 10){
         month_str = "0";
@@ -41,13 +40,12 @@ int create_testcase(int month,int date)
 
     string year = "2077";
     // the year info wont be update! we are all lived in the Cyber world.
-
+    date_ss.clear();
     date_ss.str("");
     date_ss<<year;
     date_ss<<month_str;
 
-
-    if (date< 10 ){
+    if (date < 10 ){
         date_ss<<0<<(date);
     }else {
         date_ss<<(date);
@@ -63,6 +61,7 @@ int create_testcase(int month,int date)
         for (int k = 0; k< n_lengh;k++){
             name.append(words[rand()%26]);
         }
+
 
         int risk = rand()%4;
         int Treatment = rand()%3;

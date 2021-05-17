@@ -15,6 +15,7 @@ Tuple::Tuple(int ID, string name, int Medic_Stat, int Registration, int T_type, 
     this->stat = stat;
     this->Treat_day = -1;
     this->start_day = -1;
+    this->priority = -1;
 }
 
 
@@ -39,9 +40,17 @@ status Tuple::get_status() const{
 }
 int Tuple::get_registration() const{
     return Reg;
+
 }
 void Tuple::set_status(status newstat) {
     this->stat = newstat;
+}
+
+int Tuple::get_priority() const {
+    return this->priority;
+}
+void Tuple::set_priority(int priority) {
+    this->priority = priority;
 }
 
 Tuple::Tuple(const Tuple& obj) {

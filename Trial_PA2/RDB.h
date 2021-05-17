@@ -5,6 +5,8 @@
 #ifndef TRIAL_PA2_RDB_H
 #define TRIAL_PA2_RDB_H
 #include "Tuple.h"
+#include "SimpleHash.h"
+#include "B_tree.h"
 
 using namespace std;
 
@@ -27,10 +29,8 @@ public:
     Tuple* insert(const Tuple &obj); // 1 for success. 0 for full.
     int Full(); // same as above, 0 for full.
     Tuple* find(int id); // nullptr for not found.
-    int remove(int id); // 1 for removed, 0 for not found.
-    // simple get function, if necessary
-    Tuple get_tuple(int location);
-    Tuple* get_array();
+    int remove(int id); // 1 for removed, 0 for not found/
+
     // return the true memory location instead of a pointer.
 private:
     Tuple* main;
@@ -62,7 +62,7 @@ public:
     vector<Tuple*>* find_Medic(int medic);
     vector<Tuple*>* find_Reg(int location);
     vector<Tuple*>* find_Treatment(int t_type);
-
+    vector<Tuple*>* cheat();
 
 protected:
     // there we are discussing about database implement.
@@ -80,7 +80,8 @@ protected:
 private:
     // the sort algorithm is defined here.
     vector<Tuple*>* Medic;
-    vector<Tuple*>* Treatment;
+    SimpleHash* TreatInfo;
+    BTree* Location;
     vector<Tuple*>* Registration;
     vector<block*>* primary;
     vector<int>* division; // record the start id of each block.

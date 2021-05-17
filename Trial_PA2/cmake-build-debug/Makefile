@@ -142,6 +142,141 @@ Trial_PA2/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/build
 .PHONY : Trial_PA2/fast
 
+B_tree.o: B_tree.cpp.o
+
+.PHONY : B_tree.o
+
+# target to build an object file
+B_tree.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/B_tree.cpp.o
+.PHONY : B_tree.cpp.o
+
+B_tree.i: B_tree.cpp.i
+
+.PHONY : B_tree.i
+
+# target to preprocess a source file
+B_tree.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/B_tree.cpp.i
+.PHONY : B_tree.cpp.i
+
+B_tree.s: B_tree.cpp.s
+
+.PHONY : B_tree.s
+
+# target to generate assembly for a file
+B_tree.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/B_tree.cpp.s
+.PHONY : B_tree.cpp.s
+
+FibHeap.o: FibHeap.cpp.o
+
+.PHONY : FibHeap.o
+
+# target to build an object file
+FibHeap.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/FibHeap.cpp.o
+.PHONY : FibHeap.cpp.o
+
+FibHeap.i: FibHeap.cpp.i
+
+.PHONY : FibHeap.i
+
+# target to preprocess a source file
+FibHeap.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/FibHeap.cpp.i
+.PHONY : FibHeap.cpp.i
+
+FibHeap.s: FibHeap.cpp.s
+
+.PHONY : FibHeap.s
+
+# target to generate assembly for a file
+FibHeap.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/FibHeap.cpp.s
+.PHONY : FibHeap.cpp.s
+
+RDB.o: RDB.cpp.o
+
+.PHONY : RDB.o
+
+# target to build an object file
+RDB.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/RDB.cpp.o
+.PHONY : RDB.cpp.o
+
+RDB.i: RDB.cpp.i
+
+.PHONY : RDB.i
+
+# target to preprocess a source file
+RDB.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/RDB.cpp.i
+.PHONY : RDB.cpp.i
+
+RDB.s: RDB.cpp.s
+
+.PHONY : RDB.s
+
+# target to generate assembly for a file
+RDB.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/RDB.cpp.s
+.PHONY : RDB.cpp.s
+
+Registry.o: Registry.cpp.o
+
+.PHONY : Registry.o
+
+# target to build an object file
+Registry.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/Registry.cpp.o
+.PHONY : Registry.cpp.o
+
+Registry.i: Registry.cpp.i
+
+.PHONY : Registry.i
+
+# target to preprocess a source file
+Registry.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/Registry.cpp.i
+.PHONY : Registry.cpp.i
+
+Registry.s: Registry.cpp.s
+
+.PHONY : Registry.s
+
+# target to generate assembly for a file
+Registry.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/Registry.cpp.s
+.PHONY : Registry.cpp.s
+
+SimpleHash.o: SimpleHash.cpp.o
+
+.PHONY : SimpleHash.o
+
+# target to build an object file
+SimpleHash.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/SimpleHash.cpp.o
+.PHONY : SimpleHash.cpp.o
+
+SimpleHash.i: SimpleHash.cpp.i
+
+.PHONY : SimpleHash.i
+
+# target to preprocess a source file
+SimpleHash.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/SimpleHash.cpp.i
+.PHONY : SimpleHash.cpp.i
+
+SimpleHash.s: SimpleHash.cpp.s
+
+.PHONY : SimpleHash.s
+
+# target to generate assembly for a file
+SimpleHash.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/SimpleHash.cpp.s
+.PHONY : SimpleHash.cpp.s
+
 Tuple.o: Tuple.cpp.o
 
 .PHONY : Tuple.o
@@ -168,6 +303,87 @@ Tuple.s: Tuple.cpp.s
 Tuple.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/Tuple.cpp.s
 .PHONY : Tuple.cpp.s
+
+appointment.o: appointment.cpp.o
+
+.PHONY : appointment.o
+
+# target to build an object file
+appointment.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/appointment.cpp.o
+.PHONY : appointment.cpp.o
+
+appointment.i: appointment.cpp.i
+
+.PHONY : appointment.i
+
+# target to preprocess a source file
+appointment.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/appointment.cpp.i
+.PHONY : appointment.cpp.i
+
+appointment.s: appointment.cpp.s
+
+.PHONY : appointment.s
+
+# target to generate assembly for a file
+appointment.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/appointment.cpp.s
+.PHONY : appointment.cpp.s
+
+bptree.o: bptree.cpp.o
+
+.PHONY : bptree.o
+
+# target to build an object file
+bptree.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/bptree.cpp.o
+.PHONY : bptree.cpp.o
+
+bptree.i: bptree.cpp.i
+
+.PHONY : bptree.i
+
+# target to preprocess a source file
+bptree.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/bptree.cpp.i
+.PHONY : bptree.cpp.i
+
+bptree.s: bptree.cpp.s
+
+.PHONY : bptree.s
+
+# target to generate assembly for a file
+bptree.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/bptree.cpp.s
+.PHONY : bptree.cpp.s
+
+create_testcase.o: create_testcase.cpp.o
+
+.PHONY : create_testcase.o
+
+# target to build an object file
+create_testcase.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/create_testcase.cpp.o
+.PHONY : create_testcase.cpp.o
+
+create_testcase.i: create_testcase.cpp.i
+
+.PHONY : create_testcase.i
+
+# target to preprocess a source file
+create_testcase.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/create_testcase.cpp.i
+.PHONY : create_testcase.cpp.i
+
+create_testcase.s: create_testcase.cpp.s
+
+.PHONY : create_testcase.s
+
+# target to generate assembly for a file
+create_testcase.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/create_testcase.cpp.s
+.PHONY : create_testcase.cpp.s
 
 main.o: main.cpp.o
 
@@ -205,9 +421,33 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Trial_PA2"
+	@echo "... B_tree.o"
+	@echo "... B_tree.i"
+	@echo "... B_tree.s"
+	@echo "... FibHeap.o"
+	@echo "... FibHeap.i"
+	@echo "... FibHeap.s"
+	@echo "... RDB.o"
+	@echo "... RDB.i"
+	@echo "... RDB.s"
+	@echo "... Registry.o"
+	@echo "... Registry.i"
+	@echo "... Registry.s"
+	@echo "... SimpleHash.o"
+	@echo "... SimpleHash.i"
+	@echo "... SimpleHash.s"
 	@echo "... Tuple.o"
 	@echo "... Tuple.i"
 	@echo "... Tuple.s"
+	@echo "... appointment.o"
+	@echo "... appointment.i"
+	@echo "... appointment.s"
+	@echo "... bptree.o"
+	@echo "... bptree.i"
+	@echo "... bptree.s"
+	@echo "... create_testcase.o"
+	@echo "... create_testcase.i"
+	@echo "... create_testcase.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

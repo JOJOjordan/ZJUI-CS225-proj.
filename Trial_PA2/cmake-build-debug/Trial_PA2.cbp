@@ -82,13 +82,64 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/B_tree.cpp">
+			<Option target="Trial_PA2"/>
+		</Unit>
+		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/B_tree.h">
+			<Option target="Trial_PA2"/>
+		</Unit>
+		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/FibHeap.cpp">
+			<Option target="Trial_PA2"/>
+		</Unit>
+		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/FibHeap.h">
+			<Option target="Trial_PA2"/>
+		</Unit>
+		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/RDB.cpp">
+			<Option target="Trial_PA2"/>
+		</Unit>
+		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/RDB.h">
+			<Option target="Trial_PA2"/>
+		</Unit>
+		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/Registry.cpp">
+			<Option target="Trial_PA2"/>
+		</Unit>
+		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/Registry.h">
+			<Option target="Trial_PA2"/>
+		</Unit>
+		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/SimpleHash.cpp">
+			<Option target="Trial_PA2"/>
+		</Unit>
+		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/SimpleHash.h">
+			<Option target="Trial_PA2"/>
+		</Unit>
 		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/Tuple.cpp">
 			<Option target="Trial_PA2"/>
 		</Unit>
 		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/Tuple.h">
 			<Option target="Trial_PA2"/>
 		</Unit>
+		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/appointment.cpp">
+			<Option target="Trial_PA2"/>
+		</Unit>
+		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/appointment.h">
+			<Option target="Trial_PA2"/>
+		</Unit>
+		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/bptree.cpp">
+			<Option target="Trial_PA2"/>
+		</Unit>
+		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/bptree.h">
+			<Option target="Trial_PA2"/>
+		</Unit>
+		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/create_testcase.cpp">
+			<Option target="Trial_PA2"/>
+		</Unit>
+		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/create_testcase.h">
+			<Option target="Trial_PA2"/>
+		</Unit>
 		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/main.cpp">
+			<Option target="Trial_PA2"/>
+		</Unit>
+		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/status.h">
 			<Option target="Trial_PA2"/>
 		</Unit>
 		<Unit filename="/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/CMakeLists.txt">

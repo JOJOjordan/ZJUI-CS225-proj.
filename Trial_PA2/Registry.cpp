@@ -42,7 +42,7 @@ void Registry::remove(int id) {
             // then this shows that it is inside the list.
             // different from the withdraw, the delete should delete it entirely.
             for(int i=0;i<waiting->size();i++){
-                if (*waiting[i]==result){
+                if ((*waiting)[i] == result){
                     waiting->erase(waiting->begin()+i);
                     break;
                 }
@@ -53,7 +53,7 @@ void Registry::remove(int id) {
     this->Reg_database->Delete(id);
 }
 
-void Registry::withdraw(int id) {
+Tuple* Registry::withdraw(int id) {
     //just remove it from the possible waiting list.
     //add bad day info to the waiting day status.
     auto result = Reg_database->find_ID(id);
@@ -62,7 +62,7 @@ void Registry::withdraw(int id) {
             // then this shows that it is inside the list.
             // different from the withdraw, the delete should delete it entirely.
             for(int i=0;i<waiting->size();i++){
-                if (*waiting[i]==result){
+                if ((*waiting)[i]==result){
                     waiting->erase(waiting->begin()+i);
                     break;
                 }
@@ -73,6 +73,38 @@ void Registry::withdraw(int id) {
         // simple record to avoid find entirely database.
         this->withdraw_patient->push_back(result);
     }
+    return result;
+}
+
+void Registry::priority(int id, int ddl) {
+    auto result = Reg_database->find_ID(id);
+    if (result){
+        if (result->get_status()== Waiting){
+            return;
+        }
+        if (result->get_status() == applied){
+            for(int i=0;i<waiting->size();i++){
+                if ((*waiting)[i]==result){
+                    waiting->erase(waiting->begin()+i);
+                    break;
+                }
+            }
+            if (result->get_medic() == 2){
+                result->set_startDay(30+this->current_Day-ddl);
+            }
+            if (result->get_medic() == 1){
+                result->set_startDay(14+this->current_Day-ddl);
+            }
+            if (result->get_medic() == 0){
+                result->set_startDay(7+this->current_Day-ddl);
+            }
+            else{
+                cout<<"You are not Risk Enough to be Treat. leave the Chance to Others. "<<endl;
+            }
+            waiting->insert(waiting->begin(),result);
+        }
+
+    }
 }
 
 void Registry::resent_application(int id) {
@@ -81,7 +113,7 @@ void Registry::resent_application(int id) {
         if (result->get_status() == withdrawn){
             result->set_status(applied);
             // one month's punish.
-            result->set_startDay(this->current_Day-30);
+            result->set_startDay(this->current_Day+14);
             // push it back to the waiting queue.
             this->waiting->push_back(result);
         }
@@ -134,7 +166,12 @@ void Registry::updateDAY(int day) {
 Tuple* Registry::Daily_push() {
     // the waiting should use FIFO list, but for easier work, the vector
     // container can work well in the same time.
-    Tuple* ret = *this->waiting[0];
-    this->waiting->erase(this->waiting->begin());
-    return ret;
+    if (!waiting->empty()) {
+        Tuple *ret = (*this->waiting)[0];
+        ret->set_status(Waiting);
+        this->waiting->erase(this->waiting->begin());
+        return ret;
+    } else{
+        return nullptr;
+    }
 }

@@ -5,7 +5,7 @@
 #include "RDB.h"
 
 //block
-block::block(int size = 50) {
+block::block(int size) {
     // the main block will be 10 times larger than the overflow block.
     // the initial size will be 50.
     this->main = new Tuple[size];
@@ -43,10 +43,10 @@ void block::sort() {
     // first we can sort the overflow stack.
     for (int i = 0;i<num_over-1;i++){
         for (int j=i+1;j<num_over;j++){
-            Tuple temp = num_over[j];
+            Tuple temp = overflow[j];
             Tuple smaller = overflow[i];
             if (temp.get_id()<smaller.get_id()){
-                verflow[i] = temp;
+                overflow[i] = temp;
                 overflow[j] = smaller;
             }
         }
@@ -101,7 +101,6 @@ void block::sort() {
         }
     }
     //now all the item is move to the temp array.
-    delete this->main;
     Trash->clear();
     this->main = temparray;
     this->num_over = 0;
@@ -168,8 +167,8 @@ int block::inTrash(int id) {
 
 RDB::RDB(int block_size) {
     this->Medic = new vector<Tuple*>;
-    this->Treatment = new vector<Tuple*>;
-    this->Registration = new vector<Tuple*>;
+    this->TreatInfo = new SimpleHash(3,0); // Since we are deal with Treatment(0,1,2)
+    this->Location = new BTree();
     this->division = new vector<int>;
     this->primary = new vector<block*>;
     this->block_size = block_size;
@@ -213,8 +212,15 @@ Tuple* RDB::insert(const Tuple &obj) {
     }
     // now update the secondary key.
     this->Medic->push_back(direct);
-    this->Treatment->push_back(direct);
-    this->Registration->push_back(direct);
+    // hash here.
+    this->TreatInfo->insert(direct);
+    // To be modified.
+    this->Location->_insert(direct);
+
+    if (direct){
+    } else{
+        cout<<"not inserted!"<<endl;
+    }
     return direct;
 }
 
@@ -260,21 +266,10 @@ void RDB::Delete(int id) {
         for (int i=0;i<Medic->size();i++){
             Tuple* temp = (*Medic)[i];
             if (temp->get_id() == id ){
+                // to get the True location, we can only do this until the Bplus tree is done.
+                TreatInfo->remove(temp);
+                Location->_delete(temp);
                 Medic->erase(Medic->begin()+i);
-                break;
-            }
-        }
-        for (int i=0;i<Treatment->size();i++){
-            Tuple* temp = (*Treatment)[i];
-            if (temp->get_id() == id){
-                Treatment->erase(Treatment->begin()+i);
-                break;
-            }
-        }
-        for (int i=0;i<Registration->size();i++){
-            Tuple* temp = (*Registration)[i];
-            if (temp->get_id() == id ){
-                Registration->erase(Registration->begin()+i);
                 break;
             }
         }
@@ -347,7 +342,7 @@ int RDB::DBmerge(int block1, int block2) {
             int counter = 0;
             for (int i=total/2;i<b1->num_main;i++){
                     newarray[counter] = b1->main[i];
-                    counter++
+                    counter++;
             }
             for (int i=0;i<b2->num_main;i++){
                 newarray[counter] = b2->main[i];
@@ -404,10 +399,10 @@ void RDB::MedicSort() {
                 }
             }
             // now sort all the 4 bucket.
-            swap_sort(A);
-            swap_sort(B);
-            swap_sort(C);
-            swap_sort(D);
+            swap_sort(&A);
+            swap_sort(&B);
+            swap_sort(&C);
+            swap_sort(&D);
             target->clear();
             // push them back to the list;
             for (auto i : A){
@@ -425,14 +420,20 @@ void RDB::MedicSort() {
             // now the sort was complete.
 }
 
+void RDB::TreatSort() {
+    TreatInfo->Sort(0);
+    TreatInfo->Sort(1);
+    TreatInfo->Sort(2);
+}
+
 //retrieval part!!!
 //1. primary key.
 Tuple * RDB::find_ID(int id) {
-    if (id < *this->division[0]){
+    if (id < (*this->division)[0]){
         return nullptr;
     }
     int location = 0;
-    while(*this->division[location]<id&&location<num_block-1){
+    while((*this->division)[location]<id&&location<num_block-1){
         location++;
     }
     block* target = (*primary)[location];
@@ -455,7 +456,6 @@ vector<Tuple *> * RDB::find_Medic(int medic) {
 
 vector<Tuple *> * RDB::find_Reg(int location) {
     auto result = new vector<Tuple*>;
-    this->RegSort();
     for (auto temp:*Registration){
         if (location == temp->get_registration()){
             result->push_back(temp);
@@ -465,13 +465,10 @@ vector<Tuple *> * RDB::find_Reg(int location) {
 }
 
 vector<Tuple *> * RDB::find_Treatment(int t_type) {
+    TreatSort();
+    return TreatInfo->Find_key(t_type);
+}
 
-    auto result = new vector<Tuple*>;
-    this->TreatSort();
-    for (auto temp : *Treatment){
-        if (t_type == temp->get_Treatment()){
-            result->push_back(temp);
-        }
-    }
-    return result;
+vector<Tuple *> * RDB::cheat() {
+    return this->Medic;
 }
