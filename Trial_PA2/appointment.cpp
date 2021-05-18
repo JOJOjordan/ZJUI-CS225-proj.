@@ -23,7 +23,7 @@ void FIFO::deal(int date) //process and record the status, date, and time for al
 
             q.pop();
             
-            Tuple B = A;//copy A to B to store to database.
+            Tuple B(A);//copy A to B to store to database.
             p.push(B);
             mp->push_back(B);
         }
@@ -38,9 +38,8 @@ void FIFO::deal(int date) //process and record the status, date, and time for al
             q.pop();
             //q->push(*A);// add to local database.
             
-            Tuple B= A;//copy A to B to store to database.
+            Tuple B(A);//copy A to B to store to database.
             p.push(B);
-
 
             mp->push_back(B);
         }
@@ -51,7 +50,7 @@ void FIFO::deal(int date) //process and record the status, date, and time for al
             q.pop();
             q.push(A);
             
-            Tuple B= A;//copy A to B to store to database.
+            Tuple B(A);//copy A to B to store to database.
             p.push(B);
             mp->push_back(B);
         }
@@ -194,8 +193,9 @@ vector<Tuple> FIFO::displaytreated(void)
         if (s==complete){
             output.push_back(C);
         }
-        p.pop();
         p.push(C);
+        p.pop();
+
 
     }
     return output;
@@ -207,7 +207,9 @@ void FIFO::storage(void)
     {
         Tuple A = p.front();
         data->insert(A);
+        p.push(p.front());
         p.pop();
+
     }
 }
 

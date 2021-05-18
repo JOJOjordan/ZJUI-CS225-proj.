@@ -30,7 +30,7 @@ public:
     int waiting_number(); // return the number of people waiting in the heaps
     
     //void sort(Reg_Node *a);
-    void fetch(vector<Tuple*> *a);
+    vector<Tuple*> *fetch();
     
 private:
     int date; // tomorrow's date

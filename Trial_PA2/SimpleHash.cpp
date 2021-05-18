@@ -12,6 +12,7 @@ SimpleHash::SimpleHash(int length,int type) {
         this->Main_Data.push_back(T_ptr);
     }
     this->key_type = type;
+
 }
 
 SimpleHash::~SimpleHash() {
@@ -23,22 +24,22 @@ SimpleHash::~SimpleHash() {
 
 void SimpleHash::insert(Tuple *sample) {
     int key;
-    if (!key_type){
+     if (!key_type){
         key = sample->get_Treatment();
-        this->Main_Data[key]->push_back(sample);
     }
     if (key_type == 1){
         key = sample->get_medic();
-        this->Main_Data[key]->push_back(sample);
     }
     if (key_type == 2){
         key = sample->get_registration();
-        this->Main_Data[key]->push_back(sample);
+
         // the Registry info is start at 1 because the data is stand for hospital number.
     }
     else{
         return;
     }
+    key = hashfuntion(key)%3;
+    this->Main_Data[key]->push_back(sample);
 }
 
 void SimpleHash::remove(Tuple *sample) {
@@ -52,6 +53,8 @@ void SimpleHash::remove(Tuple *sample) {
     if(key_type == 2){
         key = sample->get_registration();
     }
+    key = hashfuntion(key)%3;
+
     for (int i=0;i<(*Main_Data[key]).size();i++){
         if ((*Main_Data[key])[i]==sample){
             Main_Data[key]->erase(Main_Data[key]->begin()+i);
@@ -61,14 +64,14 @@ void SimpleHash::remove(Tuple *sample) {
 }
 
 vector<Tuple *> * SimpleHash::Find_key(int key) {
-    int index = key;
+    int index = hashfuntion(key)%3;
     return Main_Data[index];
 }
 
 void SimpleHash::Sort(int key) {
     // sorted by primary key.
     // use swap sort.
-    int index = key;
+    int index = hashfuntion(key);
     auto obj = Main_Data[index];
 
     for (int i = 0;i<obj->size();i++){

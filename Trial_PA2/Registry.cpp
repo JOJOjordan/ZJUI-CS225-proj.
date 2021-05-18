@@ -117,6 +117,10 @@ void Registry::resent_application(int id) {
             // push it back to the waiting queue.
             this->waiting->push_back(result);
         }
+        if (result->get_status() == Waiting){
+            result->set_status(applied);
+            waiting->push_back(result);
+        }
     }
 }
 

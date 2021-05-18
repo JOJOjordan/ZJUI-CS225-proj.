@@ -88,6 +88,11 @@ int main() {
     cout<<"\n "<<endl;
 
     while (Day){
+        cout<<"                            ___                   _                     "<<endl;
+        cout<<"                |\\    |    |       \\        /    |  \\      /\\    \\   /  "<<endl;
+        cout<<"                |  \\  |    |——      \\  /\\  /     |   |    /__\\    \\ /   "<<endl;
+        cout<<"                |    \\|    |___      \\/  \\/      |_ /    /    \\    |    "<<endl;
+        cout<<"                                                                         "<<endl;
         cout<<"----------------------Now Enter Day "<<Day<<"-------------------------"<<endl;
         // Deal with Daily appointment.
         for (auto i:RegStation){
@@ -100,7 +105,7 @@ int main() {
             i->storage();
         }
         // 2. receive New applications.
-        cout<<"-------------------Create new patients' information---------------"<<endl;
+        cout<<"---------------------Create new patients' information------------------"<<endl;
         create_testcase(month,Day%30);
         cout<<"reading...."<<endl;
         read_patient_info(RegStation);
@@ -119,7 +124,7 @@ int main() {
             cout<<"3. dump patient's information with patient id."<<endl;
             cout<<"4. Start new day. "<<endl;
             cout<<"5. Dump report immediately. "<<endl;
-            cout<<"6. Cancel withdraw with patient ID. "<<endl;
+            cout<<"6. Resent Application with patient ID. "<<endl;
             cout<<"default: terminate the program. "<<endl;
             cout<<"\n";
             cout<<"now enter op code. "<<endl;
@@ -186,6 +191,7 @@ int main() {
                             dump = R_Station2->find_id(id);
                             break;
                     }
+                    cout<<endl;
                     if (dump){
                         // find more info from Hospital database.
                         if (Hospitals[dump->get_registration()]->getDB()->find_ID(id)){
@@ -208,6 +214,7 @@ int main() {
                     } else{
                         cout<<"ID info not found. "<<endl;
                     }
+                    cout<<endl;
                     break;
                 case 4:
                     end = 0;
@@ -234,6 +241,7 @@ int main() {
                 default:
                     return 1;
             }
+            cout<<endl;
         }
         // 4. push the local registry station's result to the center queue.
         min = -1;
@@ -248,6 +256,9 @@ int main() {
             }
         }
         if (min) {
+            if (min > 20){
+                min = 20;
+            }
             for (int i = 0; i < min; i++) {
                 Central->record_in(R_Station1->Daily_push());
                 Central->record_in(R_Station2->Daily_push());
@@ -255,22 +266,20 @@ int main() {
             }
         }
         // 5. push the center queue's result to the Hospital.
-        for (int i=0;i<150;i++){
+        for (int i=0;i<80;i++){
             Tuple* t = Central->record_out();
             if (t) {
-                cout<<t->get_registration()<<endl;
                 Hospitals[t->get_registration()]->get_q()->push(*t);
-                cout<<Hospitals[t->get_registration()]->get_q()->size()<<endl;
             } else{
                 break;
             }
         }
 
         // 6. Check if the report is ready.
-        if (!Day%7){
+        if (Day%7 == 0){
             weekly_report(RegStation,*Central,Hospitals,Day);
         }
-        if (!Day%30){
+        if (Day%30 == 0){
             monthly_report(RegStation,*Central,Hospitals,Day);
         }
         // 7. update the date info.
@@ -360,7 +369,7 @@ int weekly_report(vector<Registry*> &station, CentralQueue<int> &Center,vector<F
     for (auto i:Hospitals){
         for(int o=0;o<i->get_q()->size();o++){
             auto tempT = i->get_q()->front();
-            out<<""<<","<<tempT.get_name()<<","<<tempT.get_medic()<<","<<tempT.get_registration()<<","<<tempT.get_Treatment()<<","<<tempT.get_TreatDay()-tempT.get_startDay()<<endl;
+            out<<""<<","<<tempT.get_id()<<","<<tempT.get_name()<<","<<tempT.get_medic()<<","<<tempT.get_registration()<<","<<tempT.get_Treatment()<<","<<tempT.get_TreatDay()-tempT.get_startDay()<<endl;
             i->get_q()->pop();
         }
 
@@ -369,9 +378,9 @@ int weekly_report(vector<Registry*> &station, CentralQueue<int> &Center,vector<F
     out<<"Waiting People(Not Appointed)"<<endl;
     out<<""<<","<<"ID"<<","<<"name"<<","<<"Medico Risk"<<","<<"Hospital"<<","<<"Treat_type"<<","<<"Waiting_time"<<endl;
     for (auto i:Hospitals){
-        for(int o=0;o<i->get_q()->size();o++){
+        for(int o=0;o<i->get_p()->size();o++){
             auto tempT = i->get_p()->front();
-            out<<""<<","<<tempT.get_name()<<","<<tempT.get_medic()<<","<<tempT.get_registration()<<","<<tempT.get_Treatment()<<","<<tempT.get_TreatDay()-tempT.get_startDay()<<endl;
+            out<<""<<","<<tempT.get_id()<<","<<tempT.get_name()<<","<<tempT.get_medic()<<","<<tempT.get_registration()<<","<<tempT.get_Treatment()<<","<<day-tempT.get_startDay()<<endl;
             i->get_p()->push(i->get_p()->front());
             i->get_p()->pop();
         }
@@ -386,13 +395,15 @@ int weekly_report(vector<Registry*> &station, CentralQueue<int> &Center,vector<F
         }
     }
     // from Central queue.
-
+    for (auto p:*Center.fetch()){
+        out<<""<<","<<p->get_id()<<","<<p->get_name()<<","<<p->get_medic()<<","<<p->get_registration()<<","<<p->get_Treatment()<<","<<day-p->get_startDay()<<endl;
+    }
     out.close();
     return 0;
 }
 
 int monthly_report(vector<Registry*> &station, CentralQueue<int> &Center,vector<FIFO*> &Hospitals, int day){
-    cout<<"-------------------------Monthly Report Generated----------------------------"<<endl;
+    cout<<"---------------------------Monthly Report Generated---------------------------"<<endl;
     ofstream out;
     stringstream filename;
     filename<<"Monthly_Day"<<day<<".txt";

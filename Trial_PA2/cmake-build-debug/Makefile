@@ -142,6 +142,33 @@ Trial_PA2/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/build
 .PHONY : Trial_PA2/fast
 
+BPlusTree.o: BPlusTree.cpp.o
+
+.PHONY : BPlusTree.o
+
+# target to build an object file
+BPlusTree.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/BPlusTree.cpp.o
+.PHONY : BPlusTree.cpp.o
+
+BPlusTree.i: BPlusTree.cpp.i
+
+.PHONY : BPlusTree.i
+
+# target to preprocess a source file
+BPlusTree.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/BPlusTree.cpp.i
+.PHONY : BPlusTree.cpp.i
+
+BPlusTree.s: BPlusTree.cpp.s
+
+.PHONY : BPlusTree.s
+
+# target to generate assembly for a file
+BPlusTree.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/BPlusTree.cpp.s
+.PHONY : BPlusTree.cpp.s
+
 B_tree.o: B_tree.cpp.o
 
 .PHONY : B_tree.o
@@ -331,32 +358,32 @@ appointment.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/appointment.cpp.s
 .PHONY : appointment.cpp.s
 
-bptree.o: bptree.cpp.o
+block.o: block.cpp.o
 
-.PHONY : bptree.o
+.PHONY : block.o
 
 # target to build an object file
-bptree.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/bptree.cpp.o
-.PHONY : bptree.cpp.o
+block.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/block.cpp.o
+.PHONY : block.cpp.o
 
-bptree.i: bptree.cpp.i
+block.i: block.cpp.i
 
-.PHONY : bptree.i
+.PHONY : block.i
 
 # target to preprocess a source file
-bptree.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/bptree.cpp.i
-.PHONY : bptree.cpp.i
+block.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/block.cpp.i
+.PHONY : block.cpp.i
 
-bptree.s: bptree.cpp.s
+block.s: block.cpp.s
 
-.PHONY : bptree.s
+.PHONY : block.s
 
 # target to generate assembly for a file
-bptree.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/bptree.cpp.s
-.PHONY : bptree.cpp.s
+block.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Trial_PA2.dir/build.make CMakeFiles/Trial_PA2.dir/block.cpp.s
+.PHONY : block.cpp.s
 
 create_testcase.o: create_testcase.cpp.o
 
@@ -421,6 +448,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Trial_PA2"
+	@echo "... BPlusTree.o"
+	@echo "... BPlusTree.i"
+	@echo "... BPlusTree.s"
 	@echo "... B_tree.o"
 	@echo "... B_tree.i"
 	@echo "... B_tree.s"
@@ -442,9 +472,9 @@ help:
 	@echo "... appointment.o"
 	@echo "... appointment.i"
 	@echo "... appointment.s"
-	@echo "... bptree.o"
-	@echo "... bptree.i"
-	@echo "... bptree.s"
+	@echo "... block.o"
+	@echo "... block.i"
+	@echo "... block.s"
 	@echo "... create_testcase.o"
 	@echo "... create_testcase.i"
 	@echo "... create_testcase.s"

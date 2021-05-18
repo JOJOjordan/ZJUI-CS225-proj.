@@ -312,8 +312,8 @@ template <class T> void CentralQueue<T>::build_array(vector<Tuple*> *a, FibNode<
     return;
 }
 
-template <class T> void CentralQueue<T>::fetch(vector<Tuple*> *a) {
-
+template <class T> vector<Tuple*> *CentralQueue<T>::fetch() {
+    vector<Tuple*> *a = new vector<Tuple*>;
     //static FibNode<T> *ptr = new FibNode<T>[len];
     // int len = waiting_number();
     // Reg_Node a[len];
@@ -322,7 +322,7 @@ template <class T> void CentralQueue<T>::fetch(vector<Tuple*> *a) {
     build_array(a, waiting_heap->min, fib_heap->keyNum);
     //build_array(a, high_risk_heap->min, priority_heap->keyNum + fib_heap->keyNum + waiting_heap->keyNum);
     
-    return;
+    return a;
 }
 
 

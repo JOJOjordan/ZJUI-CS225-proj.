@@ -193,18 +193,31 @@ CMakeFiles/Trial_PA2.dir/Tuple.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Trial_PA2.dir/Tuple.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/Tuple.cpp -o CMakeFiles/Trial_PA2.dir/Tuple.cpp.s
 
-CMakeFiles/Trial_PA2.dir/bptree.cpp.o: CMakeFiles/Trial_PA2.dir/flags.make
-CMakeFiles/Trial_PA2.dir/bptree.cpp.o: ../bptree.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Trial_PA2.dir/bptree.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Trial_PA2.dir/bptree.cpp.o -c /home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/bptree.cpp
+CMakeFiles/Trial_PA2.dir/BPlusTree.cpp.o: CMakeFiles/Trial_PA2.dir/flags.make
+CMakeFiles/Trial_PA2.dir/BPlusTree.cpp.o: ../BPlusTree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Trial_PA2.dir/BPlusTree.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Trial_PA2.dir/BPlusTree.cpp.o -c /home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/BPlusTree.cpp
 
-CMakeFiles/Trial_PA2.dir/bptree.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Trial_PA2.dir/bptree.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/bptree.cpp > CMakeFiles/Trial_PA2.dir/bptree.cpp.i
+CMakeFiles/Trial_PA2.dir/BPlusTree.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Trial_PA2.dir/BPlusTree.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/BPlusTree.cpp > CMakeFiles/Trial_PA2.dir/BPlusTree.cpp.i
 
-CMakeFiles/Trial_PA2.dir/bptree.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Trial_PA2.dir/bptree.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/bptree.cpp -o CMakeFiles/Trial_PA2.dir/bptree.cpp.s
+CMakeFiles/Trial_PA2.dir/BPlusTree.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Trial_PA2.dir/BPlusTree.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/BPlusTree.cpp -o CMakeFiles/Trial_PA2.dir/BPlusTree.cpp.s
+
+CMakeFiles/Trial_PA2.dir/block.cpp.o: CMakeFiles/Trial_PA2.dir/flags.make
+CMakeFiles/Trial_PA2.dir/block.cpp.o: ../block.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Trial_PA2.dir/block.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Trial_PA2.dir/block.cpp.o -c /home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/block.cpp
+
+CMakeFiles/Trial_PA2.dir/block.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Trial_PA2.dir/block.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/block.cpp > CMakeFiles/Trial_PA2.dir/block.cpp.i
+
+CMakeFiles/Trial_PA2.dir/block.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Trial_PA2.dir/block.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/block.cpp -o CMakeFiles/Trial_PA2.dir/block.cpp.s
 
 # Object files for target Trial_PA2
 Trial_PA2_OBJECTS = \
@@ -217,7 +230,8 @@ Trial_PA2_OBJECTS = \
 "CMakeFiles/Trial_PA2.dir/RDB.cpp.o" \
 "CMakeFiles/Trial_PA2.dir/Registry.cpp.o" \
 "CMakeFiles/Trial_PA2.dir/Tuple.cpp.o" \
-"CMakeFiles/Trial_PA2.dir/bptree.cpp.o"
+"CMakeFiles/Trial_PA2.dir/BPlusTree.cpp.o" \
+"CMakeFiles/Trial_PA2.dir/block.cpp.o"
 
 # External object files for target Trial_PA2
 Trial_PA2_EXTERNAL_OBJECTS =
@@ -231,10 +245,11 @@ Trial_PA2: CMakeFiles/Trial_PA2.dir/main.cpp.o
 Trial_PA2: CMakeFiles/Trial_PA2.dir/RDB.cpp.o
 Trial_PA2: CMakeFiles/Trial_PA2.dir/Registry.cpp.o
 Trial_PA2: CMakeFiles/Trial_PA2.dir/Tuple.cpp.o
-Trial_PA2: CMakeFiles/Trial_PA2.dir/bptree.cpp.o
+Trial_PA2: CMakeFiles/Trial_PA2.dir/BPlusTree.cpp.o
+Trial_PA2: CMakeFiles/Trial_PA2.dir/block.cpp.o
 Trial_PA2: CMakeFiles/Trial_PA2.dir/build.make
 Trial_PA2: CMakeFiles/Trial_PA2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable Trial_PA2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jordan/Desktop/CS225/ZJUI-CS225-proj./Trial_PA2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable Trial_PA2"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Trial_PA2.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

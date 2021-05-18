@@ -18,6 +18,7 @@ public:
     void Sort(int key); // sort by primary key.
 
 private:
+    hash<int> hashfuntion;
     vector<vector<Tuple* >*> Main_Data;
     int key_type;
 };
